@@ -1,0 +1,53 @@
+import java.util.Locale;
+import java.util.Scanner;
+
+public class SistemaAcademicoModular {
+    static Scanner sc = new Scanner(System.in).useLocale(Locale.US);
+
+    public static void main(String[] args) {
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("\n--- Aluno " + i + " ---");
+            
+            String nome = lerAluno(); 
+            double[] notas = lerNotas(); 
+            double media = calcularMedia(notas); 
+            String situacao = determinarSituacao(media); 
+            
+            imprimirRelatorio(nome, media, situacao); 
+        }
+    }
+
+    public static String lerAluno() {
+        System.out.print("Digite o nome: ");
+        return sc.nextLine();
+    }
+
+    public static double[] lerNotas() {
+        double[] n = new double[3]; 
+        for (int i = 0; i < 3; i++) {
+            System.out.print("Nota " + (i + 1) + ": ");
+            n[i] = sc.nextDouble();
+        }
+        sc.nextLine(); 
+        return n;
+    }
+
+    public static double calcularMedia(double[] notas) {
+        double soma = 0;
+        for (double nota : notas) {
+            soma += nota; 
+        }
+        return soma / 3;
+    }
+
+    public static String determinarSituacao(double media) {
+        if (media >= 7) return "Aprovado"; 
+        if (media >= 5) return "Recuperação"; 
+        return "Reprovado"; 
+    }
+
+    public static void imprimirRelatorio(String nome, double media, String situacao) {
+        System.out.println("-----------------------");
+        System.out.printf("Aluno: %s | Média: %.2f | Status: %s\n", nome, media, situacao); 
+    }
+}
