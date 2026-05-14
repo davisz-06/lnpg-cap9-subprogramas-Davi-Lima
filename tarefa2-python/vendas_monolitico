@@ -1,0 +1,25 @@
+print("--- Sistema de Vendas ---\n")
+print("Promoção imperdível: estamos oferecemos descontos de 5%\nem compras com valores acima de 200$ e de 10% em compras\nacima de 500$!\n")
+
+produto = input("Nome do produto: ")
+quantidade = int(input("Quantidade: "))
+preco_unitario = float(input("Preço unitário: R$ "))
+
+subtotal = quantidade * preco_unitario
+
+if subtotal > 500:
+    desconto = subtotal * 0.10
+elif subtotal > 200:
+    desconto = subtotal * 0.05
+else:
+    desconto = 0
+
+total_final = subtotal - desconto
+
+print("\n" + "="*20)
+print(f"PRODUTO: {produto}")
+print(f"SUBTOTAL: R$ {subtotal:.2f}")
+print(f"DESCONTO: R$ {desconto:.2f}")
+print(f"TOTAL: R$ {total_final:.2f}")
+print("="*20)
+print("Volte sempre!")
