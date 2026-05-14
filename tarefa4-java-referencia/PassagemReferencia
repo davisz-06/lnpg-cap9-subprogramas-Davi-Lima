@@ -1,0 +1,22 @@
+public class PassagemReferencia {
+
+    public static void main(String[] args) {
+        Produto prod = new Produto("Smartphone", 1000.00);
+
+        System.out.println("--- No Main (Antes da chamada) ---");
+        System.out.println("Produto: " + prod.nome + " | Preço: R$ " + prod.preco);
+
+        aplicarDesconto(prod);
+
+        System.out.println("\n--- No Main (Depois da chamada) ---");
+        System.out.println("Produto: " + prod.nome + " | Preço: R$ " + prod.preco);
+    }
+
+    public static void aplicarDesconto(Produto p) {
+        System.out.println("\n--- Dentro do método aplicarDesconto ---");
+        
+        p.preco = p.preco * 0.90; 
+        
+        System.out.println("Novo preço aplicado dentro do método: R$ " + p.preco);
+    }
+}
