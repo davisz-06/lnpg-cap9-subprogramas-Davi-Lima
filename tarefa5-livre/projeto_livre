@@ -1,0 +1,61 @@
+import random
+
+def mostrar_status(p_vida, d_vida):
+    print(f"\n" + "-"*25)
+    print(f"Sua Vida: {p_vida} | Vida do Dragão: {d_vida}")
+    print("-"*25)
+
+def calcular_dano(min_dano, max_dano):
+    return random.randint(min_dano, max_dano)
+
+def usar_pocao(vida_atual):
+    cura = 25
+    print(f"Você tomou uma poção de cura e recuperou {cura} de vida!")
+    return vida_atual + cura
+
+def turno_dragao(p_vida):
+    dano = calcular_dano(15, 20) 
+    print(f"O dragão cuspiu fogo e causou {dano} de dano!")
+    return p_vida - dano
+
+def verificar_vitoria(p_vida, d_vida):
+    if d_vida <= 0:
+        return "vitoria"
+    elif p_vida <= 0:
+        return "derrota"
+    return "continuar"
+
+def main():
+    p_vida = 100
+    d_vida = 80
+    print("--- BEM-VINDO AO COMBATE ÉPICO ---")
+
+    while True:
+        mostrar_status(p_vida, d_vida)
+        print("1. Atacar | 2. Usar poção de cura")
+        escolha = input("O que deseja fazer? ")
+
+        if escolha == "1":
+            dano = calcular_dano(15, 25)
+            print(f"Você acertou um golpe de {dano} de dano!")
+            d_vida -= dano
+        elif escolha == "2":
+            p_vida = usar_pocao(p_vida)
+        else:
+            print("Ação inválida!")
+            continue
+
+        estado = verificar_vitoria(p_vida, d_vida)
+        if estado == "vitoria":
+            print("\nParabéns! Você derrotou o dragão!")
+            break
+
+        p_vida = turno_dragao(p_vida)
+        
+        estado = verificar_vitoria(p_vida, d_vida)
+        if estado == "derrota":
+            print("\nVocê foi derrotado pelo Dragão... Nunca desista!")
+            break
+
+if __name__ == "__main__":
+    main()
