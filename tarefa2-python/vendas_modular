@@ -1,0 +1,42 @@
+def ler_produto():
+    print("--- Sistema de Vendas ---\n")
+    print("Promoção imperdível: estamos oferecemos descontos de 5%\nem compras com valores acima de 200$ e de 10% em compras\nacima de 500$!\n")
+    nome = input("Nome do produto: ")
+    qtd = int(input("Quantidade: "))
+    preco = float(input("Preço unitário: R$ "))
+    return nome, qtd, preco
+
+def calcular_subtotal(qtd, preco):
+    return qtd * preco
+
+def calcular_desconto(subtotal):
+    if subtotal > 500:
+        return subtotal * 0.10
+    elif subtotal > 200:
+        return subtotal * 0.05
+    return 0
+
+def calcular_total(subtotal, desconto):
+    return subtotal - desconto
+
+def imprimir_cupom(nome, subtotal, desconto, total):
+    print("\n" + "="*30)
+    print("      CUPOM FISCAL      ")
+    print(f"Produto: {nome}")
+    print(f"Subtotal: R$ {subtotal:.2f}")
+    print(f"Desconto: R$ {desconto:.2f}")
+    print(f"TOTAL FINAL: R$ {total:.2f}")
+    print("="*30)
+    print("Volte sempre!")
+
+def main():
+    nome, qtd, preco = ler_produto()
+    
+    sub = calcular_subtotal(qtd, preco)
+    desc = calcular_desconto(sub)
+    total = calcular_total(sub, desc)
+    
+    imprimir_cupom(nome, sub, desc, total)
+
+if __name__ == "__main__":
+    main()
